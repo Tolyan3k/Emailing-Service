@@ -1,16 +1,17 @@
 const EmailTemplateModel = require('../models/emailTemplate.model')
+const EmailTemplateDto = require("../dtos/emailTemplate.dto");
 
 class EmailTemplateService {
   async addEmailTemplate(userId, title = '', header = '', main = '', footer = '') {
-    return EmailTemplateModel.create({title, header, main, footer, userId})
+    return new EmailTemplateDto(await EmailTemplateModel.create({title, header, main, footer, userId}))
   }
 
   async getEmailTemplate(emailTemplateId) {
-    return EmailTemplateModel.findById(emailTemplateId)
+    return new EmailTemplateDto(await EmailTemplateModel.findById(emailTemplateId))
   }
 
   async getEmailTemplates(userId) {
-    return EmailTemplateModel.find({userId})
+    return new EmailTemplateDto(await EmailTemplateModel.find({userId}))
   }
 
   async setEmailTemplate(emailTemplateId,
@@ -31,11 +32,11 @@ class EmailTemplateService {
     setIfNotUndefined(main)
     setIfNotUndefined(footer)
 
-    return EmailTemplateModel.updateOne({_id: emailTemplateId}, emailTemplateFields)
+    return new EmailTemplateDto(await EmailTemplateModel.updateOne({_id: emailTemplateId}, emailTemplateFields))
   }
 
   async deleteEmailTemplate(emailTemplateId) {
-    return EmailTemplateModel.deleteOne({_id: emailTemplateId})
+    return new EmailTemplateDto(await EmailTemplateModel.deleteOne({_id: emailTemplateId}))
   }
 
   async setTitle(emailTemplateId, newTitle) {
@@ -56,7 +57,7 @@ class EmailTemplateService {
 }
 
 async function setEmailTemplateField(emailTemplateId, field) {
-  return EmailTemplateModel.updateOne({_id: emailTemplateId}, field)
+  return new EmailTemplateDto(await EmailTemplateModel.updateOne({_id: emailTemplateId}, field))
 }
 
 module.exports = new EmailTemplateService()

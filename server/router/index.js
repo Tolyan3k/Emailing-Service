@@ -74,16 +74,18 @@ router.get('/emailTemplate/:id',
   emailTemplateValidator.validateIdParam,
   authMiddleware, userController.getEmailTemplate)
 
-router.get('/emailTemplate', authMiddleware, userController.getEmailTemplates)
+router.get('/emailTemplates', authMiddleware, userController.getEmailTemplates)
 
 
 //Email Lists
 router.post('/emailList',
+  emailListValidator.body.name,
   emailListValidator.body.emails,
-  emailListValidator.body.emailTemplateId,
+  // emailListValidator.body.emailTemplateId,
   authMiddleware, userController.addEmailList)
 
 router.get('/emailList/:id', emailListValidator.param.id, authMiddleware, userController.getEmailList)
+router.get('/emailLists', authMiddleware, userController.getEmailLists)
 router.delete('/emailList/:id', emailListValidator.param.id, authMiddleware, userController.deleteEmailList)
 
 router.put('/emailList/:id/emails',
@@ -104,6 +106,7 @@ router.put('/emailList/:id/emailTemplate',
 
 //Emailing
 router.post('/emailing',
+  emailingValidator.body.name,
   emailingValidator.body.emailTemplateId,
   emailingValidator.body.emailListId,
   authMiddleware, userController.addEmailing)

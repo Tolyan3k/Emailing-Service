@@ -1,6 +1,11 @@
 const {Schema, model} = require('mongoose')
 
 const EmailingSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
   emailsStatus: [{
     email: {
       type: String,

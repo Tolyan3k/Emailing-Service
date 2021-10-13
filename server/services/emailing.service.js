@@ -1,11 +1,11 @@
-const emailTemplateService = require('../service/emailTemplate.service')
-const emailListService = require('../service/emailList.service')
-const mailService = require('../service/mail.service')
+const emailTemplateService = require('.//emailTemplate.service')
+const emailListService = require('.//emailList.service')
+const mailService = require('.//mail.service')
 const EmailingModel = require('../models/emailing.model')
 
 class EmailingService {
-  addEmailing(emailListId, emailTemplateId, userId) {
-    return EmailingModel.create({emailListId, emailTemplateId, userId})
+  addEmailing(name, emailListId, emailTemplateId, userId) {
+    return EmailingModel.create({name, emailListId, emailTemplateId, userId})
   }
 
   deleteEmailing(emailingId) {

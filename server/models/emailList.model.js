@@ -1,6 +1,11 @@
 const {Schema, model} = require('mongoose')
 
 const EmailListSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   emails: [{
     type: String,
     unique: true,
@@ -12,13 +17,14 @@ const EmailListSchema = new Schema({
   //   unique: true,
   //   trim: true
   // }],
-  emailTemplateId: {
-    type: Schema.Types.ObjectId,
-    ref: 'EmailTemplate'
-  },
+  // emailTemplateId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'EmailTemplate'
+  // },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true,
   }
 })
 

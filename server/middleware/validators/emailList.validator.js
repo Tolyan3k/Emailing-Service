@@ -9,6 +9,13 @@ class EmailListValidator {
 }
 
 class BodyValidator {
+  name = [
+    body('name')
+      .exists().bail().withMessage(messageTemplate.notExistingField('name'))
+      .isString().bail().withMessage(messageTemplate.notStringField('name'))
+      .notEmpty().bail().withMessage(messageTemplate.emptyField('name'))
+  ]
+
   emails = [
     body('emails')
       .exists().bail().withMessage(messageTemplate.notExistingField('emails'))

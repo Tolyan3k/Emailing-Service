@@ -80,7 +80,11 @@ class UserService {
   }
 
   async getUsers() {
-    const users = UserModel.find()
+    const users = await UserModel.find()
+    for (let i = 0; i < users.length; i++) {
+      users[i] = new UserDto(users[i])
+    }
+
     return users
   }
 }

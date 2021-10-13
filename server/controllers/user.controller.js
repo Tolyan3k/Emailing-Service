@@ -1,11 +1,11 @@
-const emailTemplateService = require('../service/emailTemplate.service')
-const emailListService = require('../service/emailList.service')
-const emailingService = require('../service/emailing.service')
-const emailService = require('../service/email.service')
+const emailTemplateService = require('../services/emailTemplate.service')
+const emailListService = require('../services/emailList.service')
+const emailingService = require('../services/emailing.service')
+const emailService = require('../services/email.service')
 
 const ApiException = require('../exceptions/api.exception')
 const {validationResult} = require('express-validator')
-const UserService = require('../service/user.service')
+const UserService = require('../services/user.service')
 require('dotenv').config()
 
 class UserController {
@@ -49,7 +49,7 @@ class UserController {
     try {
       const {refreshToken} = req.cookies
       const token = await UserService.logout(refreshToken)
-      res.clearCookie('refreshCookie')
+      res.clearCookie('refreshToken')
       return res.json(token)
     } catch (e) {
       next(e)
@@ -313,9 +313,9 @@ class UserController {
       }
 
       const userId = req.user.id
-      const {emails, emailTemplateId} = req.body
+      const {name, emails, emailTemplateId} = req.body
 
-      return res.json(await emailListService.addEmailList(userId, emailTemplateId, emails))
+      return res.json(await emailListService.addEmailList(name, userId, emailTemplateId, emails))
     } catch (e) {
       next(e)
     }
@@ -331,6 +331,21 @@ class UserController {
       const emailListId = req.params.id
 
       return res.json(await emailListService.getEmailList(emailListId))
+    } catch (e) {
+      next(e)
+    }
+  }
+
+  async getEmailLists(req, res, next) {
+    try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        return next(ApiException.BadRequest('Ошибка при создании списка рассылки', errors.array()))
+      }
+
+      const userId = req.user.id
+
+      return res.json(await emailListService.getEmailLists(userId))
     } catch (e) {
       next(e)
     }
@@ -409,7 +424,7 @@ class UserController {
       }
 
       const userId = req.user.id
-      const {emailTemplateId, emailListId} = req.body
+      const {name, emailTemplateId, emailListId} = req.body
 
       return res.json(await emailingService.addEmailing(emailListId, emailTemplateId, userId))
     } catch (e) {
