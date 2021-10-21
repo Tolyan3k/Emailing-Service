@@ -11,7 +11,7 @@ class EmailTemplateService {
   }
 
   async getEmailTemplates(userId) {
-    return new EmailTemplateDto(await EmailTemplateModel.find({userId}))
+    return (await EmailTemplateModel.find({userId})).map(emailTemplate => new EmailTemplateDto(emailTemplate))
   }
 
   async setEmailTemplate(emailTemplateId,
@@ -22,16 +22,18 @@ class EmailTemplateService {
                          }) {
     let emailTemplateFields = {}
     const setIfNotUndefined = (value) => {
+      console.log(value)
       if (value !== undefined) {
-        emailTemplateFields[value] = value
+        Object.assign(emailTemplateFields, value)
       }
     }
 
-    setIfNotUndefined(title)
-    setIfNotUndefined(header)
-    setIfNotUndefined(main)
-    setIfNotUndefined(footer)
+    setIfNotUndefined({title})
+    setIfNotUndefined({header})
+    setIfNotUndefined({main})
+    setIfNotUndefined({footer})
 
+    console.log(emailTemplateFields)
     return new EmailTemplateDto(await EmailTemplateModel.updateOne({_id: emailTemplateId}, emailTemplateFields))
   }
 

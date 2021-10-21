@@ -3,8 +3,8 @@ import {IEmailing} from "../models/IEmailing";
 import $api from "../http";
 
 export default class EmailingService {
-  static async makeEmailing(emailListId: string, emailTemplateId: string): Promise<AxiosResponse<IEmailing>> {
-    return $api.post('/emailing', {emailListId, emailTemplateId})
+  static async makeEmailing(name: string, emailListId: string, emailTemplateId: string): Promise<AxiosResponse<IEmailing>> {
+    return $api.post('/emailing', {name, emailListId, emailTemplateId})
   }
 
   static async updateEmailing(id: string,

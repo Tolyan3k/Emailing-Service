@@ -8,7 +8,6 @@ const EmailListSchema = new Schema({
   },
   emails: [{
     type: String,
-    unique: true,
     trim: true,
     toLowerCase: true
   }],

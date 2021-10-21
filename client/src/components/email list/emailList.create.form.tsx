@@ -1,16 +1,32 @@
-import React, {FC, useState} from 'react';
-import {observer} from "mobx-react-lite";
+import React, {Dispatch, FC, useCallback, useEffect, useState} from 'react';
 import EmailService from "../../api/services/email.service";
 import EmailListService from "../../api/services/emailList.service";
 
-const EmailListCreateForm: FC = () => {
+interface EmailListCreateFormProps {
+  modalActive: boolean | null
+  setModalActive: Dispatch<React.SetStateAction<boolean>> | null
+}
+
+const EmailListCreateForm: FC<EmailListCreateFormProps> =
+  ({
+    modalActive = null,
+    setModalActive = null
+   }) => {
   const [name, setName] = useState<string>('')
   const [emails, setEmails] = useState<string[]>([])
   const [emailListEmails, setEmailListEmails] = useState<string[]>([])
 
-  EmailService.getEmails().then(resp => {
-    setEmails(resp.data.map(email => email.email))
-  })
+  const fetchEmails = useCallback(() => {
+    EmailService.getEmails().then(resp => {
+      setEmails(resp.data.map(email => email.email))
+    })
+  }, [])
+
+  useEffect(() => {
+    fetchEmails()
+    setName('')
+    setEmailListEmails([])
+  }, [fetchEmails, modalActive])
 
   return (
     <div>
@@ -50,7 +66,14 @@ const EmailListCreateForm: FC = () => {
         </tbody>
       </table>
       <button
-        onClick={() => EmailListService.makeEmailList(name, emailListEmails)}
+        onClick={() => {
+          EmailListService.makeEmailList(name, emailListEmails)
+            .then(() => {
+              if (setModalActive) {
+                setModalActive(false)
+              }
+            })
+        }}
       >
         Создать
       </button>
@@ -58,4 +81,4 @@ const EmailListCreateForm: FC = () => {
   );
 };
 
-export default observer(EmailListCreateForm);
+export default EmailListCreateForm;

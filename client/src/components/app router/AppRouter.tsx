@@ -5,8 +5,8 @@ import StartPageAuthorized from "../../pages/AuthorizedUser/Start.page.authorize
 import ContactsIdPage from "../../pages/AuthorizedUser/contacts/ContactsId.page";
 import EmailListsPage from "../../pages/AuthorizedUser/email lists/EmailLists.page";
 import EmailListsIdPage from "../../pages/AuthorizedUser/email lists/EmailListsId.page";
-import EmailTemplatesPage from "../../pages/AuthorizedUser/EmailTemplates.page/EmailTemplates.page";
-import EmailTemplatesIdPage from "../../pages/AuthorizedUser/EmailTemplates.page/EmailTemplatesId.page";
+import EmailTemplatesPage from "../../pages/AuthorizedUser/EmailTemplates/EmailTemplates.page";
+import EmailTemplatesIdPage from "../../pages/AuthorizedUser/EmailTemplates/EmailTemplatesId.page";
 import EmailingsPage from "../../pages/AuthorizedUser/Emailings/Emailings.page";
 import EmailingsIdPage from "../../pages/AuthorizedUser/Emailings/EmailingsId.page";
 

@@ -1,8 +1,9 @@
-import React, {Dispatch, FC, SetStateAction, useState} from 'react';
+import React, {Dispatch, FC, SetStateAction, useCallback, useEffect, useState} from 'react';
 import {IEmailList} from "../../api/models/IEmailList";
 import EmailListService from "../../api/services/emailList.service";
 import {IEmailTemplate} from "../../api/models/IEmailTemplate";
-import {observer} from "mobx-react-lite";
+import EmailTemplateService from "../../api/services/emailTemplate.service";
+import EmailingService from "../../api/services/emailing.service";
 
 interface EmailingCreateFormProps {
   active: boolean
@@ -20,9 +21,21 @@ const EmailingCreateForm: FC<EmailingCreateFormProps> =
     const [emailTemplates, setEmailTemplates] = useState<IEmailTemplate[]>([])
     const [selectedEmailTemplateId, setSelectedEmailTemplateId] = useState<string>("")
 
-    EmailListService.getEmailLists().then(resp => {
-      setEmailLists(resp.data)
-    })
+    const fetchEmailLists = useCallback(() => {
+      EmailListService.getEmailLists().then(resp => {
+        setEmailLists(resp.data)
+      })
+    }, [])
+
+    const fetchEmailTemplates = useCallback(() => {
+      EmailTemplateService.getEmailTemplates()
+        .then(resp => setEmailTemplates(resp.data))
+    }, [])
+
+    useEffect(() => {
+      fetchEmailLists()
+      fetchEmailTemplates()
+    }, [fetchEmailLists, fetchEmailTemplates, active])
 
     return (
       <div>
@@ -32,32 +45,47 @@ const EmailingCreateForm: FC<EmailingCreateFormProps> =
           type="text"
           placeholder={'Введите название рассылки'}
         />
+        <br/>
         <select
-          value={selectedEmailListId}
+          // value={selectedEmailListId}
           onChange={event => setSelectedEmailListId(event.target.value)}
-          name="select-email-list"
-          id=""
         >
-          <option disabled={true}>Выберите категорию пользователей</option>
+          <option disabled={true}  selected={true}>Выберите категорию пользователей</option>
           {emailLists.map(emailList =>
-              <option key={emailList.id} value={emailList.id}>{emailList.name}</option>
+              <option key={emailList.id}
+                      value={emailList.id}
+              >
+                {emailList.name}
+              </option>
           )}
         </select>
         <select
-          value={selectedEmailTemplateId}
+          // value={selectedEmailTemplateId}
           onChange={event => setSelectedEmailTemplateId(event.target.value)}
-          name="select-email-template"
-          id=""
         >
-          <option disabled={true}>Выберите шаблон e-mail</option>
-          {
-            emailTemplates.map(emailTemplate =>
-              <option value=""></option>
-            )
-          }
+          <option disabled={true} selected={true}>Выберите шаблон e-mail</option>
+          {emailTemplates.map(emailTemplate =>
+            <option
+              key={emailTemplate.id}
+              value={emailTemplate.id}
+            >
+              {emailTemplate.title}
+            </option>
+          )}
         </select>
+        <button
+          onClick={() => {
+            console.log([selectedEmailListId, selectedEmailTemplateId])
+            EmailingService.makeEmailing(name, selectedEmailListId, selectedEmailTemplateId)
+              .then(() => {
+                setActive(false)
+              })
+          }}
+        >
+          Создать
+        </button>
       </div>
     );
 };
 
-export default observer(EmailingCreateForm);
+export default EmailingCreateForm;

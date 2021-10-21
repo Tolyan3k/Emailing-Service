@@ -1,7 +1,14 @@
-import React, {useState} from 'react';
+import React, {Dispatch, FC, useState} from 'react';
 import EmailService from "../../api/services/email.service";
 
-const ContactForm = () => {
+interface ContactFormProps {
+  setModalActive: Dispatch<React.SetStateAction<boolean>> | null
+}
+
+const ContactForm: FC<ContactFormProps> =
+  ({
+    setModalActive= null
+   }) => {
   const [email, setEmail] = useState<string>('')
   // const [tags, setTags] = useState<string[]>([])
 
@@ -20,7 +27,15 @@ const ContactForm = () => {
       {/*  placeholder={'Добавьте тег для e-mail'}*/}
       {/*/>*/}
       <button
-        onClick={() => EmailService.addEmail(email, [])}
+        onClick={() => {
+          EmailService.addEmail(email, [])
+            .finally(() => {
+              if (setModalActive) {
+                setModalActive(false)
+              }
+            })
+          setEmail('')
+        }}
       >
         Завершить редактирование
       </button>

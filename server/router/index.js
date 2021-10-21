@@ -130,6 +130,6 @@ router.put('/emailing/:id',
   emailingValidator.body.emailListIdOrTemplateIdExist,
   authMiddleware, userController.setEmailing)
 
-router.get('/emailing', authMiddleware, userController.getEmailing)
+router.get('/emailings', authMiddleware, userController.getEmailings)
 
 module.exports = router

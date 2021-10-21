@@ -8,7 +8,7 @@ export default class EmailListService {
   }
 
   static async deleteEmailList(id: string): Promise<AxiosResponse<IEmailList>> {
-    return $api.post('/emailList/' + id)
+    return $api.delete('/emailList/' + id)
   }
 
   static async getEmailList(id: string): Promise<AxiosResponse<IEmailList>> {
@@ -20,7 +20,7 @@ export default class EmailListService {
   }
 
   static async addEmailsToEmailList(id: string, emails: string[]): Promise<AxiosResponse<IEmailList>> {
-    return $api.put('/emailList/' + id + '/emails', emails)
+    return $api.put('/emailList/' + id + '/emails', {emails})
   }
 
   static async deleteEmailsFromEmailList(id: string, emails: string[]): Promise<AxiosResponse<IEmailList>> {

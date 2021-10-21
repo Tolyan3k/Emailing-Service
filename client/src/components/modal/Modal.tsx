@@ -21,6 +21,12 @@ const Modal: FC<ModalProps> =
         className={active ? "modal__content active" : "modal__content"}
         onClick={e => e.stopPropagation()}
       >
+        <button
+          className={"modal__btn"}
+          onClick={() => setActive(false)}
+        >
+          X
+        </button>
         {children}
       </div>
     </div>

@@ -6,6 +6,11 @@ const EmailingSchema = new Schema({
     required: true,
     trim: true
   },
+  inProcess: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   emailsStatus: [{
     email: {
       type: String,
@@ -22,15 +27,18 @@ const EmailingSchema = new Schema({
   }],
   emailListId: {
     type: Schema.Types.ObjectId,
-    ref: 'EmailList'
+    ref: 'EmailList',
+    required: true
   },
   emailTemplateId: {
     type: Schema.Types.ObjectId,
-    ref: 'EmailTemplate'
+    ref: 'EmailTemplate',
+    required: true
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   }
 })
 

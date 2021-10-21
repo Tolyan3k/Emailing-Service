@@ -10,7 +10,7 @@ module.exports = class EmailTemplateDto {
     this.id = model._id
     this.title = model.title
     this.header = model.header
-    this.body = model.body
+    this.body = model.main
     this.footer = model.footer
     this.userId = model.userId
   }

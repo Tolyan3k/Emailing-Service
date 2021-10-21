@@ -29,3 +29,9 @@
 .modal__content.active {
     transform: scale(1);
 }
+
+.modal__btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

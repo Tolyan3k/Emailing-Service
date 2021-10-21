@@ -29,7 +29,7 @@ const EmailListsForm: FC = () => {
               Создать список рассылки
             </button>
             <Modal active={makeEmailListActive} setActive={setMakeEmailListActive}>
-              <EmailListCreateForm/>
+              <EmailListCreateForm modalActive={makeEmailListActive} setModalActive={setMakeEmailListActive}/>
             </Modal>
           </th>
         </tr>

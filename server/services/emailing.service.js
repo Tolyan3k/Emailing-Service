@@ -2,33 +2,39 @@ const emailTemplateService = require('.//emailTemplate.service')
 const emailListService = require('.//emailList.service')
 const mailService = require('.//mail.service')
 const EmailingModel = require('../models/emailing.model')
+const EmailingDto = require("../dtos/emailing.dto");
 
 class EmailingService {
-  addEmailing(name, emailListId, emailTemplateId, userId) {
-    return EmailingModel.create({name, emailListId, emailTemplateId, userId})
+  async addEmailing(name, emailListId, emailTemplateId, userId) {
+    return new EmailingDto(await EmailingModel.create({name, emailListId, emailTemplateId, userId}))
   }
 
-  deleteEmailing(emailingId) {
-    return EmailingModel.deleteOne({_id: emailingId})
+  async deleteEmailing(emailingId) {
+    return new EmailingDto(await EmailingModel.deleteOne({_id: emailingId}))
   }
 
-  setEmailing(emailingId, emailListId, emailTemplateId) {
-    return EmailingModel.updateOne({_id: emailingId}, {emailListId, emailTemplateId})
+  async setEmailing(emailingId, emailListId, emailTemplateId) {
+    return new EmailingDto(await EmailingModel.updateOne({_id: emailingId}, {emailListId, emailTemplateId}))
   }
 
-  getEmailing(emailingId) {
-    return EmailingModel.findById(emailingId)
+  async getEmailing(emailingId) {
+    return new EmailingDto(await EmailingModel.findById(emailingId))
   }
 
-  getEmailings(userId) {
-    return EmailingModel.find({userId})
+  async getEmailings(userId) {
+    return (await EmailingModel.find({userId})).map(emailing => new EmailingDto(emailing))
   }
 
   async startEmailing(emailingId) {
-    const emailingData = await EmailingModel.findOne({_id: emailingId}, {_id: 0, emailListId: 1, emailTemplateId: 1})
+    const emailingData = await EmailingModel.findOne({_id: emailingId}, {_id: 0, inProcess: 1, emailListId: 1, emailTemplateId: 1})
+    if (emailingData.inProcess) {
+      throw Error('Рассылка уже запущена')
+    }
+
+    await EmailingModel.updateOne({_id: emailingId}, {inProcess: true})
 
     const {emails} = await emailListService.getEmailList(emailingData.emailListId)
-    const {title, header, main, footer} = await emailTemplateService.getEmailTemplate(emailingData.emailTemplateId)
+    const {title, header, body, footer} = await emailTemplateService.getEmailTemplate(emailingData.emailTemplateId)
     await EmailingModel.updateOne({_id: emailingId}, {emailsStatus: []})
 
     emails.forEach((email) => {
@@ -42,7 +48,7 @@ class EmailingService {
 
     emails.forEach(email => {
       const func = async () => {
-        const mailResult = await mailService.sendMail(email, {title, header, main, footer})
+        const mailResult = await mailService.sendMail(email, {title, header, main: body, footer})
         if (mailResult['accepted'].length) {
           await EmailingModel.updateOne({_id: emailingId, 'emailsStatus.email': email},
             {$set: {'emailsStatus.$.status': 'Отправлено', 'emailsStatus.$.statusDate': Date.now()}})
@@ -53,6 +59,8 @@ class EmailingService {
       }
       func()
     })
+
+    await EmailingModel.updateOne({_id: emailingId}, {inProcess: false})
   }
 }
 

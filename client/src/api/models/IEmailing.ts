@@ -2,7 +2,8 @@ import {IEmailStatus} from "./IEmailStatus";
 
 export interface IEmailing {
   name: string
-  emailsStatus: IEmailStatus[],
+  inProcess: boolean
+  emailsStatus: IEmailStatus[]
   emailListId: string
   emailTemplateId: string
   userId: string

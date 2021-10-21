@@ -426,7 +426,7 @@ class UserController {
       const userId = req.user.id
       const {name, emailTemplateId, emailListId} = req.body
 
-      return res.json(await emailingService.addEmailing(emailListId, emailTemplateId, userId))
+      return res.json(await emailingService.addEmailing(name, emailListId, emailTemplateId, userId))
     } catch (e) {
       next(e)
     }

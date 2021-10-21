@@ -35,7 +35,7 @@ class MailService {
       from: process.env.SMTP_USER,
       to,
       subject: title,
-      text: [header, main, footer].join('\n'),
+      text: [header, main, footer].join('\n\n'),
       html: ''
     })
   }

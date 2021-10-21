@@ -28,7 +28,7 @@ class EmailListService {
   }
 
   async deleteEmails(emailListId, emails) {
-    return new EmailListDto(await EmailListModel.updateOne({_id: emailListId}, {$unset: {emails}}))
+    return new EmailListDto(await EmailListModel.updateOne({_id: emailListId}, {$pull: {emails: {$in: [...emails]}}}))
   }
 
   async setEmails(emailListId, emails) {

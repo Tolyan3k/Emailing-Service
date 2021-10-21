@@ -4,7 +4,7 @@ import {observer} from "mobx-react-lite";
 import {FC} from "react";
 import {BrowserRouter} from "react-router-dom";
 
-const StartPageAuthorized: FC = () => {
+const StartPageAuthorized = () => {
   return (
     <BrowserRouter>
       <Navbar/>
