@@ -7,6 +7,7 @@ import {IEmailTemplate} from "../../../api/models/IEmailTemplate";
 import EmailListService from "../../../api/services/emailList.service";
 import EmailTemplateService from "../../../api/services/emailTemplate.service";
 import Modal from "../../../components/modal/Modal";
+import EmailingEditForm from "../../../components/emailings/emailing.edit.form";
 
 interface EmailingsIdProps {
   id: string
@@ -22,6 +23,10 @@ const EmailingsIdPage = () => {
 
   const [showEmailListModal, setShowEmailListModal] = useState<boolean>(false)
   const [showEmailTemplateModal, setShowEmailTemplateModal] = useState<boolean>(false)
+  const [showEmailingEdit, setShowEmailingEdit] = useState<boolean>(false)
+
+  const [showEmailListAboutButton, setShowEmailListAboutButton] = useState<boolean>(false)
+  const [showEmailTemplateAboutButton, setShowEmailTemplateAboutButton] = useState<boolean>(false)
 
   const fetchEmailing = useCallback(() => {
     // setLoading(true)
@@ -36,14 +41,18 @@ const EmailingsIdPage = () => {
     emailing.emailListId && EmailListService.getEmailList(emailing.emailListId)
       .then(resp => {
         setEmailList(resp.data)
+        setShowEmailListAboutButton(true)
       })
+      .catch(() => setShowEmailListAboutButton(false))
   }, [emailing, emailList])
 
   const fetchEmailTemplate = useCallback(() => {
     emailing.emailTemplateId && EmailTemplateService.getEmailTemplate(emailing.emailTemplateId)
       .then(resp => {
         setEmailTemplate(resp.data)
+        setShowEmailTemplateAboutButton(true)
       })
+      .catch(() => setShowEmailTemplateAboutButton(false))
   }, [emailing, emailTemplate])
 
   useEffect(() => {
@@ -66,9 +75,8 @@ const EmailingsIdPage = () => {
     <div>
       <table
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
+          // alignItems: "left",
+          justifyContent: "left"
         }}
       >
         <tbody>
@@ -79,31 +87,48 @@ const EmailingsIdPage = () => {
         <tr>
           <th>Список рассылки:</th>
           <td>
-            <button
-              onClick={() => setShowEmailListModal(true)}
-            >
-              Подробнее
-            </button>
+            {showEmailListAboutButton
+              ? <button
+                onClick={() => setShowEmailListModal(true)}
+              >
+                Подробнее
+              </button>
+              : "Не удалось найти список рассылки"
+            }
           </td>
         </tr>
         <tr>
           <th>Шаблон письма:</th>
           <td>
+            {showEmailTemplateAboutButton
+              ? <button
+                onClick={() => setShowEmailTemplateModal(true)}
+              >
+                Подробнее
+              </button>
+              : "Не удалось найти шаблон письма"
+            }
+          </td>
+        </tr>
+        <tr>
+          <td>
             <button
-              onClick={() => setShowEmailTemplateModal(true)}
+              onClick={() => setShowEmailingEdit(true)}
             >
-              Подробнее
+              Редактировать
             </button>
           </td>
         </tr>
         </tbody>
       </table>
       <table
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
+          style={{
+            width: "1000 px",
+            maxWidth: "1000px",
+            minWidth: "1000px",
+            margin: "auto",
+            border: "2px solid black",
+          }}
       >
         <caption>
           Статусы доставки
@@ -173,6 +198,10 @@ const EmailingsIdPage = () => {
             </tbody>
           </table>
         </div>
+      </Modal>
+
+      <Modal active={showEmailingEdit} setActive={setShowEmailingEdit}>
+        <EmailingEditForm emailingId={id} active={showEmailingEdit} setActive={setShowEmailingEdit}/>
       </Modal>
     </div>
   )

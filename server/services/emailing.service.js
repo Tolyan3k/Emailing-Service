@@ -3,6 +3,7 @@ const emailListService = require('.//emailList.service')
 const mailService = require('.//mail.service')
 const EmailingModel = require('../models/emailing.model')
 const EmailingDto = require("../dtos/emailing.dto");
+const ApiException = require("../exceptions/api.exception");
 
 class EmailingService {
   async addEmailing(name, emailListId, emailTemplateId, userId) {
@@ -13,8 +14,8 @@ class EmailingService {
     return new EmailingDto(await EmailingModel.deleteOne({_id: emailingId}))
   }
 
-  async setEmailing(emailingId, emailListId, emailTemplateId) {
-    return new EmailingDto(await EmailingModel.updateOne({_id: emailingId}, {emailListId, emailTemplateId}))
+  async setEmailing(emailingId, name, emailListId, emailTemplateId) {
+    return new EmailingDto(await EmailingModel.updateOne({_id: emailingId}, {name, emailListId, emailTemplateId}))
   }
 
   async getEmailing(emailingId) {
@@ -33,8 +34,23 @@ class EmailingService {
 
     await EmailingModel.updateOne({_id: emailingId}, {inProcess: true})
 
-    const {emails} = await emailListService.getEmailList(emailingData.emailListId)
-    const {title, header, body, footer} = await emailTemplateService.getEmailTemplate(emailingData.emailTemplateId)
+    // const {emails} = await emailListService.getEmailList(emailingData.emailListId)
+    // const {title, header, body, footer} = await emailTemplateService.getEmailTemplate(emailingData.emailTemplateId)
+
+    const emailList = await emailListService.getEmailList(emailingData.emailListId)
+        .catch(async (reason) => {
+          await EmailingModel.updateOne({_id: emailingId}, {inProcess: false})
+          throw reason
+        })
+    const emailTemplate = await emailTemplateService.getEmailTemplate(emailingData.emailTemplateId)
+        .catch(async (reason) => {
+          await EmailingModel.updateOne({_id: emailingId}, {inProcess: false})
+          throw reason
+        })
+
+    const {emails} = emailList
+    const {title, header, body, footer} = emailTemplate
+
     await EmailingModel.updateOne({_id: emailingId}, {emailsStatus: []})
 
     emails.forEach((email) => {

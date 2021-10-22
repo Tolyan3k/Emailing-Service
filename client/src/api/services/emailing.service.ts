@@ -8,10 +8,11 @@ export default class EmailingService {
   }
 
   static async updateEmailing(id: string,
+                              name?: string,
                               emailListId?: string,
                               emailTemplateId?: string,
                               ): Promise<AxiosResponse<IEmailing>> {
-    return $api.put('/emailing/' + id, {emailListId, emailTemplateId})
+    return $api.put('/emailing/' + id, {name, emailListId, emailTemplateId})
   }
 
   static async deleteEmailing(id: string): Promise<void> {

@@ -455,9 +455,9 @@ class UserController {
       }
 
       const emailingId = req.params.id
-      const {emailTemplateId, emailListId} = req.body
+      const {name, emailTemplateId, emailListId} = req.body
 
-      return res.json(await emailingService.setEmailing(emailingId, emailListId, emailTemplateId))
+      return res.json(await emailingService.setEmailing(emailingId, name, emailListId, emailTemplateId))
     } catch (e) {
       next(e)
     }

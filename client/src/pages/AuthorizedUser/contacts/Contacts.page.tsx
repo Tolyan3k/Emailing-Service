@@ -35,7 +35,15 @@ const ContactsPage: FC = () => {
     <div>
       {isLoading
         ? "Загрузка..."
-        : <table>
+        : <table
+              style={{
+                maxWidth: "500px",
+                minWidth: "500px",
+                margin: "auto",
+                border: "2px solid black",
+                borderSpacing: "5px",
+              }}
+          >
           <caption>
             Список контактов
           </caption>

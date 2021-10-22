@@ -125,6 +125,7 @@ router.post('/emailing/:id',
 
 router.put('/emailing/:id',
   emailingValidator.param.id,
+  emailingValidator.body.emailingNameIfExist,
   emailingValidator.body.emailListIdIfExist,
   emailingValidator.body.emailTemplateIdIfExist,
   emailingValidator.body.emailListIdOrTemplateIdExist,

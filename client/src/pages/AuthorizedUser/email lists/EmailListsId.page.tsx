@@ -36,7 +36,14 @@ const EmailListsIdPage: FC = () => {
 
   const emailListScreen = (
     <div>
-      <table>
+      <table
+        style={{
+          minWidth: "200px",
+          maxWidth: "200px",
+          margin: "auto",
+          textAlign: "left",
+        }}
+      >
         <tbody>
         <tr>
           <th>Название:</th>
@@ -44,7 +51,14 @@ const EmailListsIdPage: FC = () => {
         </tr>
         </tbody>
       </table>
-      <table>
+      <table
+          style={{
+            minWidth: "200px",
+            maxWidth: "200px",
+            margin: "auto",
+            border: "2px solid black"
+          }}
+      >
         <caption>
           Список контактов
         </caption>

@@ -35,6 +35,9 @@ const EmailingCreateForm: FC<EmailingCreateFormProps> =
     useEffect(() => {
       fetchEmailLists()
       fetchEmailTemplates()
+        if (!active) {
+            setName('')
+        }
     }, [fetchEmailLists, fetchEmailTemplates, active])
 
     return (

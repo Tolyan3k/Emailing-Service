@@ -1,5 +1,6 @@
 const EmailTemplateModel = require('../models/emailTemplate.model')
 const EmailTemplateDto = require("../dtos/emailTemplate.dto");
+const ApiExceptions = require("../exceptions/api.exception");
 
 class EmailTemplateService {
   async addEmailTemplate(userId, title = '', header = '', main = '', footer = '') {
@@ -7,7 +8,12 @@ class EmailTemplateService {
   }
 
   async getEmailTemplate(emailTemplateId) {
-    return new EmailTemplateDto(await EmailTemplateModel.findById(emailTemplateId))
+    const emailTemplate = await EmailTemplateModel.findById(emailTemplateId)
+    if (!emailTemplate) {
+      throw ApiExceptions.BadRequest('Шаблон письма с указанным id не существует')
+    }
+
+    return new EmailTemplateDto(emailTemplate)
   }
 
   async getEmailTemplates(userId) {

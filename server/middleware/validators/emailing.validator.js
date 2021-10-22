@@ -16,6 +16,9 @@ class BodyValidator {
       .notEmpty().bail().withMessage(messageTemplate.emptyField('name'))
   ]
 
+  emailingNameIfExist = bodyTemplate.maybeExistingNotEmptyStringField('name')
+  emailingName = bodyTemplate.existingNotEmptyStringField('name')
+
   emailTemplateId = bodyTemplate.existingNotEmptyStringField('emailTemplateId')
   emailListId = bodyTemplate.existingNotEmptyStringField('emailListId')
 

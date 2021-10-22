@@ -25,12 +25,21 @@ const EmailListsPage = () => {
 
   return (
     <div>
-      <table>
+      <table
+          style={{
+            maxWidth: "800px",
+            minWidth: "800px",
+            margin: "auto",
+            border: "2px solid black",
+            borderSpacing: "5px",
+          }}
+      >
         <caption>Списки рассылки</caption>
         <thead>
         <tr>
           <th>Название</th>
           <th>Кол-во контактов</th>
+          <th></th>
           <th>
             <button
               onClick={() => setMakeEmailListActive(true)}

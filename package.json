@@ -1,0 +1,11 @@
+{
+  "name": "jwt_authorization",
+  "version": "1.0.0",
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run serverDev\" \"cd client && npm start\"",
+    "production": ""
+  }
+}

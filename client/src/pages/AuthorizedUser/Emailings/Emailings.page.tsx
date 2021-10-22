@@ -38,11 +38,20 @@ const EmailingsPage = () => {
 
   const mainScreen = (
     <div style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      // display: "flex",
+      // alignItems: "center",
+      // justifyContent: "center",
     }}>
-      <table>
+      <table
+          style={{
+            width: "1000 px",
+            maxWidth: "1000px",
+            minWidth: "1000px",
+            margin: "auto",
+            border: "2px solid black",
+            borderSpacing: "5px",
+          }}
+      >
         <caption>Рассылки</caption>
         <thead>
           <tr>
@@ -51,6 +60,8 @@ const EmailingsPage = () => {
             <th>Отправлено</th>
             <th>Не удалось отправить</th>
             <th>Ожидает отправки</th>
+            <th></th>
+            <th></th>
             <th>
               <button
                 onClick={() => {
@@ -64,7 +75,7 @@ const EmailingsPage = () => {
         </thead>
         <tbody>
         {emailings.map(emailing =>
-          <tr>
+          <tr key={emailing.id}>
             <td>{emailing.name}</td>
             <td>{emailing.emailsStatus.length}</td>
             <td>{emailing.emailsStatus.filter(emailStatus => emailStatus.status === 'Отправлено').length}</td>
@@ -94,7 +105,12 @@ const EmailingsPage = () => {
                 onClick={() => {
                   setLoading(true)
                   EmailingService.deleteEmailing(emailing.id)
-                    .then(fetchEmailings)
+                    .then(() => {
+                      fetchEmailings()
+                    })
+                      .finally(() => {
+                        setLoading(false)
+                      })
                 }}
               >
                 X

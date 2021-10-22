@@ -33,11 +33,20 @@ const EmailTemplatesPage = () => {
 
   const mainScreen = (
     <div>
-      <table>
+      <table
+          style={{
+            maxWidth: "700px",
+            minWidth: "700px",
+            margin: "auto",
+            border: "2px solid black",
+            borderSpacing: "5px",
+          }}
+      >
         <caption>Шаблоны писем</caption>
         <thead>
           <tr>
             <th>Название</th>
+            <th></th>
             <th>
               <button
                 onClick={() => setShowCreateEmailTemplate(true)}

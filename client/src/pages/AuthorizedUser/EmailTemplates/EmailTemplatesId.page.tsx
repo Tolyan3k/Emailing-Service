@@ -27,26 +27,16 @@ const EmailTemplatesIdPage = () => {
 
   return (
     <div>
-      <table>
-        <tbody>
-          <tr>
-            <th>Название:</th>
-            <td>{emailTemplate.title}</td>
-          </tr>
-          <tr>
-            <th>Заголовок письма:</th>
-            <td>{emailTemplate.header}</td>
-          </tr>
-          <tr>
-            <th>Тело письма:</th>
-            <td>{emailTemplate.body}</td>
-          </tr>
-          <tr>
-            <th>Подпись:</th>
-            <td>{emailTemplate.footer}</td>
-          </tr>
-        </tbody>
-        <tfoot>
+      <table
+          style={{
+            minWidth: "500px",
+            maxWidth: "500px",
+            margin: "auto",
+            textAlign: "left",
+            borderSpacing: "5px"
+          }}
+      >
+        <thead>
           <tr>
             <td>
               <button
@@ -58,7 +48,29 @@ const EmailTemplatesIdPage = () => {
               </button>
             </td>
           </tr>
-        </tfoot>
+        </thead>
+        <tbody>
+        <tr>
+          <th>Название:</th>
+          <td>{emailTemplate.title}</td>
+        </tr>
+        <tr>
+          <th>Заголовок письма:</th>
+          <td
+              style={{
+                width: "400px"
+              }}
+          >{emailTemplate.header}</td>
+        </tr>
+        <tr>
+          <th>Тело письма:</th>
+          <td>{emailTemplate.body}</td>
+        </tr>
+        <tr>
+          <th>Подпись:</th>
+          <td>{emailTemplate.footer}</td>
+        </tr>
+        </tbody>
       </table>
 
       <Modal active={showEmailTemplateEdit} setActive={setShowEmailTemplateEdit}>

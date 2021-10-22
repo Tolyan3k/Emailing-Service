@@ -15,7 +15,12 @@ class EmailListService {
   }
 
   async getEmailList(emailListId) {
-    return new EmailListDto(await EmailListModel.findById(emailListId))
+    const emailList = await EmailListModel.findById(emailListId)
+    if (!emailList) {
+      throw ApiExceptions.BadRequest('Списка рассылки с таким с id не существует')
+    }
+
+    return new EmailListDto(emailList)
   }
 
   async getEmailLists(userId) {
