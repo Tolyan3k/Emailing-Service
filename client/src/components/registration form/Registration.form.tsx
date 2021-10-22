@@ -22,7 +22,8 @@ const RegistrationForm: FC = () => {
         placeholder={'Введите пароль'}
       />
       <button
-        onClick={() => store.registration(email, password)}
+        onClick={() =>
+          store.registration(email, password)}
       >
         Зарегистрироваться
       </button>

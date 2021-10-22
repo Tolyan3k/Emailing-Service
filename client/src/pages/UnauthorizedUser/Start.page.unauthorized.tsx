@@ -11,13 +11,13 @@ const StartPageUnauthorized: FC = () => {
   return (
     <div>
       <main>
-        <h1>Начни пользоваться нашим сервисом рассылки прямо сейчас</h1>
+        <h1>Сервис по рассылке e-mail сообщений</h1>
         <button onClick={() => setModalRegActive(true)}>
-          Я новенький
+          Зарегистрироваться
         </button>
 
         <button onClick={() => setModalLoginActive(true)}>
-          Я уже смешарик
+          Войти
         </button>
       </main>
 

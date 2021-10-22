@@ -31,16 +31,9 @@ const EmailListEdit: FC<EmailListEditProps> =
       EmailListService.getEmailList(emailListId)
         .then(resp => {
           setEmailList(resp.data)
+          setNewEmailListEmails(resp.data.emails)
         })
     }, [])
-
-    useEffect(() => {
-      setLoading(true)
-      fetchEmails()
-      fetchEmailList()
-      setNewEmailListEmails(emailList.emails)
-      setLoading(false)
-    }, [fetchEmails, modalActive])
 
     const setEmailsToEmailList = () => {
       const newEmailListEmailsSet = new Set(newEmailListEmails)
@@ -60,6 +53,14 @@ const EmailListEdit: FC<EmailListEditProps> =
         console.log(emailsToAdd)
       }
     }
+
+    useEffect(() => {
+      setLoading(true)
+      fetchEmails()
+      fetchEmailList()
+
+      setLoading(false)
+    }, [fetchEmails, modalActive, /*setEmailsToEmailList*/])
 
     const loadingScreen = (
       <div>Загрузка...</div>

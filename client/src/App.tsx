@@ -32,9 +32,18 @@ function App() {
   return (
     <div className="App">
       <h1>
-        Пользователь {store.user.email} авторизован
+        Сервис по рассылке e-mail сообщений
       </h1>
-      <button onClick={() => store.logout()}>Выпилиться</button>
+      <button
+        style={{
+          position: "relative",
+          left: 400,
+          bottom: 50,
+        }}
+        onClick={() => store.logout()}
+      >
+        Выйти
+      </button>
       <StartPageAuthorized />
     </div>
   );
