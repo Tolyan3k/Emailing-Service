@@ -3,7 +3,7 @@ const {Schema, model} = require('mongoose')
 const EmailSchema = new Schema({
   email: {
     type: String,
-    unique: true,
+    // unique: true,
     required: true,
     lowercase: true,
     trim: true
