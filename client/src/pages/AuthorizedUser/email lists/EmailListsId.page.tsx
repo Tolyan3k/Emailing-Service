@@ -4,6 +4,8 @@ import {IEmailList} from "../../../api/models/IEmailList";
 import EmailListService from "../../../api/services/emailList.service";
 import Modal from "../../../components/modal/Modal";
 import EmailListEdit from "../../../components/email list/emailList.edit";
+//import './EmailList.page.css';
+
 
 interface EmailListsIdProps {
   id: string
@@ -36,13 +38,9 @@ const EmailListsIdPage: FC = () => {
 
   const emailListScreen = (
     <div>
-      <table
-        style={{
-          minWidth: "200px",
-          maxWidth: "200px",
-          margin: "auto",
-          textAlign: "left",
-        }}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
+      <table className = "style_table"
       >
         <tbody>
         <tr>
@@ -51,13 +49,7 @@ const EmailListsIdPage: FC = () => {
         </tr>
         </tbody>
       </table>
-      <table
-          style={{
-            minWidth: "200px",
-            maxWidth: "200px",
-            margin: "auto",
-            border: "2px solid black"
-          }}
+      <table className = "style_table"
       >
         <caption>
           Список контактов

@@ -7,5 +7,17 @@
   "scripts": {
     "dev": "concurrently \"cd server && npm run serverDev\" \"cd client && npm start\"",
     "production": ""
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tolyan3k/Emailing-Service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tolyan3k/Emailing-Service/issues"
+  },
+  "homepage": "https://github.com/Tolyan3k/Emailing-Service#readme",
+  "description": ""
 }

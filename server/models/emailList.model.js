@@ -11,15 +11,7 @@ const EmailListSchema = new Schema({
     trim: true,
     toLowerCase: true
   }],
-  // tags: [{
-  //   type: String,
-  //   unique: true,
-  //   trim: true
-  // }],
-  // emailTemplateId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'EmailTemplate'
-  // },
+
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',

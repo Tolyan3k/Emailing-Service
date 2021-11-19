@@ -6,10 +6,14 @@ import {BrowserRouter} from "react-router-dom";
 
 const StartPageAuthorized = () => {
   return (
+    <div>
     <BrowserRouter>
       <Navbar/>
+      <div>
       <AppRouter/>
+      </div>
     </BrowserRouter>
+     </div>
   );
 };
 

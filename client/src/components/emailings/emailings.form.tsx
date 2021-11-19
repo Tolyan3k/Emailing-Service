@@ -6,6 +6,7 @@ import EmailingCreateForm from "./emailing.create.form";
 import {observer} from "mobx-react-lite";
 import {IEmailList} from "../../api/models/IEmailList";
 import EmailingForm from "./emailing.form";
+import "./emailing.css";
 
 const EmailingsForm: FC = () => {
   const [emailings, setEmailings] = useState<IEmailing[]>([])

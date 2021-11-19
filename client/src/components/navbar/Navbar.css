@@ -1,0 +1,45 @@
+
+
+#location_nav {
+position: absolute;
+width: 1210px;
+height: 102px;
+left: 12%;
+top: 10%;
+
+background: #8DA0C4;
+
+}
+
+
+#navbar {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    top: 25%;
+    left: 11.6%;
+
+ }
+
+
+ .indent_a {
+    margin: 22px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 33px;
+    line-height: 39px;
+    /* identical to box height */
+    
+   
+    
+    color: #000000;
+ }
+
+
+ .indent_a:hover {
+    color:#f8f8f8;
+
+ }
+
+

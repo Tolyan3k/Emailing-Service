@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 import Modal from "../../../components/modal/Modal";
 import EmailTemplateCreateForm from "../../../components/email template/emailTemplate.create.form";
 import {observer} from "mobx-react-lite";
+ import './Templates.css';
 
 const EmailTemplatesPage = () => {
   const history = useHistory()
@@ -33,22 +34,22 @@ const EmailTemplatesPage = () => {
 
   const mainScreen = (
     <div>
-      <table
-          style={{
-            maxWidth: "700px",
-            minWidth: "700px",
-            margin: "auto",
-            border: "2px solid black",
-            borderSpacing: "5px",
-          }}
+
+            <div id = "div_contact">
+            <h1 id = "nametag">Шаблоны писем</h1>
+
+            <div id = "div_con"> 
+            {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link> */}
+
+      <table id = "style_table_template_of_email"
       >
-        <caption>Шаблоны писем</caption>
+        
         <thead>
           <tr>
             <th>Название</th>
             <th></th>
             <th>
-              <button
+              <button 
                 onClick={() => setShowCreateEmailTemplate(true)}
               >
                 Создать новый шаблон
@@ -78,7 +79,7 @@ const EmailTemplatesPage = () => {
                     .finally(() => setLoading(false))
                 }}
               >
-                X
+                <i >X</i>
               </button>
             </td>
           </tr>
@@ -89,6 +90,8 @@ const EmailTemplatesPage = () => {
       <Modal  active={showCreateEmailTemplate} setActive={setShowCreateEmailTemplate}>
         <EmailTemplateCreateForm setModalActive={setShowCreateEmailTemplate}/>
       </Modal>
+    </div>
+    </div>
     </div>
   )
 

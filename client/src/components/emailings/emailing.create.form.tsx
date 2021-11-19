@@ -4,6 +4,7 @@ import EmailListService from "../../api/services/emailList.service";
 import {IEmailTemplate} from "../../api/models/IEmailTemplate";
 import EmailTemplateService from "../../api/services/emailTemplate.service";
 import EmailingService from "../../api/services/emailing.service";
+import "./emailing.css"
 
 interface EmailingCreateFormProps {
   active: boolean
@@ -41,15 +42,19 @@ const EmailingCreateForm: FC<EmailingCreateFormProps> =
     }, [fetchEmailLists, fetchEmailTemplates, active])
 
     return (
-      <div>
-        <input
+      <div >
+
+        <div id = "main_emailings_create">
+        <input id = "emailing_names"
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder={'Введите название рассылки'}
         />
         <br/>
-        <select
+
+        <div id = "new_indent">
+        <select id = "select_template"
           // value={selectedEmailListId}
           onChange={event => setSelectedEmailListId(event.target.value)}
         >
@@ -62,7 +67,7 @@ const EmailingCreateForm: FC<EmailingCreateFormProps> =
               </option>
           )}
         </select>
-        <select
+        <select id = "select_template"
           // value={selectedEmailTemplateId}
           onChange={event => setSelectedEmailTemplateId(event.target.value)}
         >
@@ -76,7 +81,7 @@ const EmailingCreateForm: FC<EmailingCreateFormProps> =
             </option>
           )}
         </select>
-        <button
+        <button id = "create_emailing_table"
           onClick={() => {
             console.log([selectedEmailListId, selectedEmailTemplateId])
             EmailingService.makeEmailing(name, selectedEmailListId, selectedEmailTemplateId)
@@ -87,6 +92,8 @@ const EmailingCreateForm: FC<EmailingCreateFormProps> =
         >
           Создать
         </button>
+        </div>
+        </div>
       </div>
     );
 };

@@ -4,6 +4,8 @@ import EmailTemplateService from "../../../api/services/emailTemplate.service";
 import {IEmailTemplate} from "../../../api/models/IEmailTemplate";
 import Modal from "../../../components/modal/Modal";
 import EmailTemplateEditForm from "../../../components/email template/emailTemplate.edit.form";
+// import './Templates.css';
+
 
 interface EmailTemplatesIdProps {
   id: string
@@ -27,19 +29,12 @@ const EmailTemplatesIdPage = () => {
 
   return (
     <div>
-      <table
-          style={{
-            minWidth: "500px",
-            maxWidth: "500px",
-            margin: "auto",
-            textAlign: "left",
-            borderSpacing: "5px"
-          }}
+      <table className = "style_table"
       >
         <thead>
           <tr>
             <td>
-              <button
+              <button id = "create_btn"
                 onClick={() => {
                   setShowEmailTemplateEdit(true)
                 }}

@@ -1,24 +1,10 @@
-
-#reg {
-    /* min-width: 53vh; */
-    min-height: 10vh;
-    /* padding: 15px; */
+#div__contact {
+    min-width: 250px;
+    min-height: 230px;
+    top: 13vh;
 }
 
-
-#send {
-    
-    position: absolute;
-    left: 25%;
-    
-    font-size: 4.8vh;
-    font-weight: 8;
-    margin-bottom: 6vh;
-
-}
-
-
-.input_reg {
+#input_contact {
     font-size: 2.5vh;
     min-width: 450px;
     min-height: 35px;
@@ -28,15 +14,14 @@
     top: 0;
     left: 1vh;
     z-index: 2;
-   
-
+    border: none;
     box-shadow: inset 0 -0.5vh rgba(black, 0.1);
     padding: 14px;
     display: block flow;
 }  
 
 
-#btn {
+#input_button {
     margin-left: 25px;
     font-size: 2.5vh;
 
@@ -47,13 +32,22 @@
     border: inset 0 -0.5vh rgba(black, 0.1);
     padding: 14px;
     text-align: center;
-
-
 }
 
-#block_ { 
-    margin: 25px;
+#contact_block {
+    margin: 0;
     
     position: relative;
-    top: 25%;
+    display: inline block;
+    top: 5vh;
+}
+
+#add_contact {
+    position: relative;
+    top: -4.5vh;
+    left: 1.2vw;
+
+       
+    font-size: 4.8vh;
+    font-weight: 8;
 }

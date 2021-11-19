@@ -25,26 +25,37 @@ function App() {
 
   if (!store.isAuth) {
     return (
-      <StartPageUnauthorized />
+      
+           <StartPageUnauthorized />
     )
   }
 
   return (
     <div className="App">
-      <h1>
-        Сервис по рассылке e-mail сообщений
-      </h1>
-      <button
-        style={{
-          position: "relative",
-          left: 400,
-          bottom: 50,
-        }}
-        onClick={() => store.logout()}
-      >
-        Выйти
-      </button>
-      <StartPageAuthorized />
+
+     <div id = "top">
+          
+          <p id = "sender" >MailSender</p> 
+
+          <a className  = "logout"
+       
+       onClick={() => store.logout()}
+     >
+       выйти
+     </a>
+           
+
+    </div>
+
+    <div className = "site">
+        <StartPageAuthorized />
+       
+
+    </div>
+
+
+
+    
     </div>
   );
 }
