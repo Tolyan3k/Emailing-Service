@@ -4,31 +4,62 @@ import RegistrationForm from "../../components/registration form/Registration.fo
 import LoginForm from "../../components/login form/Login.form";
 import {observer} from "mobx-react-lite";
 
+import "./css/unauthorized.css";
+import business from "./css/bus.jpg";
+
+
 const StartPageUnauthorized: FC = () => {
   const [modalRegActive, setModalRegActive] = useState<boolean>(false)
   const [modalLoginActive, setModalLoginActive] = useState<boolean>(false)
 
   return (
-    <div>
-      <main>
-        <h1>Сервис по рассылке e-mail сообщений</h1>
-        <button onClick={() => setModalRegActive(true)}>
-          Зарегистрироваться
-        </button>
+    <html className = "">
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-        <button onClick={() => setModalLoginActive(true)}>
-          Войти
-        </button>
-      </main>
+      <div id = "top">
+          
+            <p id = "sender" >MailSender</p> 
 
-      <Modal active={modalRegActive} setActive={setModalRegActive}>
+            <nav className = "nav_reg">
+              <a  className = "log" onClick = { () => setModalLoginActive(true)} >войти</a>  
+              <a  className = "log" onClick = { () => setModalRegActive(true)} >зарегистрироваться</a>
+            </nav>                 
+             
+
+      </div>
+
+      <div className = "site">
+
+          <div>
+            <p className = "txt">
+              MailSender - сервис отправки email рассылок
+            </p>
+
+            <button className = "txt" onClick = { () => setModalRegActive(true)} >
+                 Зарегистрироваться
+            </button>
+          </div>
+
+            <div>
+              <img  id = "man" src={business} alt="business" />
+            </div>
+  
+      </div>
+
+
+
+
+  <Modal active={modalRegActive} setActive={setModalRegActive}>
         <RegistrationForm/>
-      </Modal>
+  </Modal>
 
-      <Modal active={modalLoginActive} setActive={setModalLoginActive}>
+  <Modal active={modalLoginActive} setActive={setModalLoginActive}>
         <LoginForm/>
-      </Modal>
-    </div>
+  </Modal>
+
+
+    </html>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, {Dispatch, FC, useCallback, useEffect, useState} from 'react';
 import EmailService from "../../api/services/email.service";
 import EmailListService from "../../api/services/emailList.service";
+import "./emailList.css"
 
 interface EmailListCreateFormProps {
   modalActive: boolean | null
@@ -29,22 +30,25 @@ const EmailListCreateForm: FC<EmailListCreateFormProps> =
   }, [fetchEmails, modalActive])
 
   return (
-    <div>
-      <h1>Создание нового списка рассылки</h1>
-      <input
+    <div id = "font">
+      
+      <h1 id = "creation_list">Создание нового списка рассылки</h1>
+
+      <input  id = "list_name"
         value={name}
         onChange={event => setName(event.target.value)}
         placeholder={'Введите название списка рассылки'}
         type="text"
       />
-      <table>
-        <caption>Выберите e-mail для рассылки</caption>
+      
+      <table id = "table_list">
+        {/* <caption>Выберите e-mail для рассылки</caption> */}
         <tbody>
           {emails.map(email =>
-            <tr key={email}>
-              <td>{email}</td>
+            <tr id = "mail_adress" key={email}>
+              <td id = "td_create_list" >{email}</td>
               <td>
-                <button
+                <button id = "add_button"
                   onClick={() => {
                     emailListEmails.includes(email)
                       ? setEmailListEmails(emailListEmails.filter(e => e !== email))
@@ -56,8 +60,8 @@ const EmailListCreateForm: FC<EmailListCreateFormProps> =
                 >
                   {
                     emailListEmails.includes(email)
-                      ? 'Удалить'
-                      : 'Добавить'
+                      ? 'удалить'
+                      : 'добавить'
                   }
                 </button>
               </td>
@@ -65,7 +69,7 @@ const EmailListCreateForm: FC<EmailListCreateFormProps> =
           )}
         </tbody>
       </table>
-      <button
+      <button id = "create_button"
         onClick={() => {
           EmailListService.makeEmailList(name, emailListEmails)
             .then(() => {
@@ -77,6 +81,11 @@ const EmailListCreateForm: FC<EmailListCreateFormProps> =
       >
         Создать
       </button>
+
+
+   
+      
+
     </div>
   );
 };

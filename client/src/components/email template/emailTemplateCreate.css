@@ -1,0 +1,62 @@
+#template_creation_form {
+    position: relative;
+    top: 25px;
+
+    min-width: 50vw;
+    min-height: 40vh;
+}
+
+ 
+#create_Tbutton {
+    
+    position: relative;
+    left: 36%;
+
+    margin-top: 25px;
+    margin-left: 25px;
+    font-size: 2.5vh;
+
+    background-color: white;
+    min-height: 55px;
+    min-width: 150px;
+    z-index: 2;
+    border: inset 0 -0.5vh rgba(black, 0.1);
+    padding: 12px;
+    text-align: center;
+
+    margin-bottom: 35px;
+
+
+}
+
+
+#make_template {
+    position: relative;
+    color: black;
+    left: 27%;
+}
+
+#template_name {
+    font-size: 2.5vh;
+    min-width: 450px;
+    min-height: 35px;
+    margin-bottom: 2vh;
+    background: transparent;
+    position: relative;
+    top: 0;
+    left: 12vh;
+    z-index: 2;
+    border: none;
+    box-shadow: inset 0 -0.5vh rgba(black, 0.1);
+    padding: 10px;
+    display: block flow;
+    text-align: center;
+    margin-top: 2%;
+}
+
+
+#make_form {
+    position: relative;
+
+    left: 10%;
+}

@@ -11,6 +11,7 @@
     pointer-events: none;
     opacity: 0;
     transition: 0.5s;
+    
 }
 
 .modal.active {
@@ -19,19 +20,50 @@
 }
 
 .modal__content {
-    padding: 20px;
-    border-radius: 12px;
+    padding: 25px;
+    border-radius: 2px;
     background: white;
-    transform: scale(0.5);
+    transform: scale(1);
     transition: 0.4s all;
+    min-width: 24vw;
+    /* min-height: 23vw; */
+
 }
 
 .modal__content.active {
     transform: scale(1);
+
 }
 
 .modal__btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    /* position: absolute;
+    top: 8%;
+    right: 2%; */
+    
 }
+
+.btn {
+   
+
+    position: absolute;
+
+    margin-left: 25px;
+    font-size: 2.5vh;
+
+    background-color: white;
+    min-height: 35px;
+    min-width: 140px;
+    z-index: 2;
+    border: inset 0 -0.5vh rgba(black, 0.1);
+    padding: 9px;
+    text-align: center;
+
+    right: 3.8%;
+    top: 20%;
+}
+
+
+/* button {
+    top: 12%;
+    right: 12%;
+     */

@@ -5,6 +5,7 @@ import EmailListForm from "../../../components/email list/emailList.form";
 import {IEmailList} from "../../../api/models/IEmailList";
 import EmailListService from "../../../api/services/emailList.service";
 import {useHistory} from "react-router-dom";
+import './EmailList.page.css';
 
 const EmailListsPage = () => {
   const history = useHistory()
@@ -25,23 +26,25 @@ const EmailListsPage = () => {
 
   return (
     <div>
-      <table
-          style={{
-            maxWidth: "800px",
-            minWidth: "800px",
-            margin: "auto",
-            border: "2px solid black",
-            borderSpacing: "5px",
-          }}
+      {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link> */}
+      
+      
+      <div id = "div_contact">
+            <h1 id = "nametag">Списки рассылки</h1>
+
+            <div id = "div_con"> 
+            
+      <table id = "style_table_list_of_email"
+     
       >
-        <caption>Списки рассылки</caption>
+     
         <thead>
         <tr>
-          <th>Название</th>
-          <th>Кол-во контактов</th>
+          <th id="table_lists_name">Название</th>
+          <th id = "table_count_lists">Кол-во контактов</th>
           <th></th>
           <th>
-            <button
+            <button id = "create_btn"
               onClick={() => setMakeEmailListActive(true)}
             >
               Создать список рассылки
@@ -56,41 +59,41 @@ const EmailListsPage = () => {
         {
           emailLists.map(emailList =>
             <tr key={emailList.id}>
-              <td>{emailList.name}</td>
+              <td id= "email_list_name">{emailList.name}</td>
               <td>{emailList.emails.length}</td>
+              
               <td>
-                <button
+                <button id = "about_emailLists"
                   // onClick={() => setEmailListActive(true)}
                   onClick={() => history.push(`/email_lists/${emailList.id}`)}
                 >
                   Подробнее
                 </button>
-                {/*<Modal active={emailListActive} setActive={setEmailListActive}>*/}
-                {/*  <EmailListForm emailList={emailList}*/}
-                {/*                 settings={*/}
-                {/*                   {more:*/}
-                {/*                       {showButton: true,*/}
-                {/*                         showAddEmailButton: true,*/}
-                {/*                         showDeleteEmailButton: true*/}
-                {/*                       }}}*/}
-                {/*  />*/}
-                {/*</Modal>*/}
               </td>
+              
               <td>
+                
                 <button
                   onClick={() => {
                     EmailListService.deleteEmailList(emailList.id)
                       .then(fetchEmailLists)
                   }}
                 >
-                  X
+
+                  <i className="">X</i>
+                
                 </button>
+              
               </td>
             </tr>
           )
         }
         </tbody>
       </table>
+
+      </div>
+      </div>
+        
     </div>
   );
 };

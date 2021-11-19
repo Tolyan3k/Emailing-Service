@@ -1,0 +1,28 @@
+
+#style_table_template_of_email {
+    position: relative;
+    left: 22%;
+    width: 919px;
+    height: 441px;
+    display:block;
+    font-style: normal;
+    font-size: 4vh;
+}
+
+
+
+#style_table_template_of_email th {
+  font-size: 24px;
+  min-width: 260px;
+}
+
+#style_table_template_of_email tbody {
+  position: relative;
+  left: 1%;
+}
+
+#style_table_template_of_email td {
+  font-size: 24px;
+  min-width: 250px;
+}
+

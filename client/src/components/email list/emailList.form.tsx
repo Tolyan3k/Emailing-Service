@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react';
 import {IEmailList} from "../../api/models/IEmailList";
 import Modal from "../modal/Modal";
 import EmailListService from "../../api/services/emailList.service";
+// import './emailLists.form.css';
 
 interface EmailListFormProps {
   emailList: IEmailList
@@ -25,6 +26,8 @@ const EmailListForm: FC<EmailListFormProps> =
 
     return (
       <div>
+        {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link> */}
+
         <h1>{emailList.name}</h1>
         {settings.more.showButton
             ? <button
@@ -76,7 +79,9 @@ const EmailListForm: FC<EmailListFormProps> =
                   ? <td>
                     <button
                       onClick={() => EmailListService.deleteEmailsFromEmailList(emailList.id, [email])}
-                    >X</button>
+                    >
+                     <i className="fa fa-trash"></i>  
+                    </button>
                   </td>
                   : <></>
                 }

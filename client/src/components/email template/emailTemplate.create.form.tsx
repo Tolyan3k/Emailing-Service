@@ -1,6 +1,7 @@
 import React, {Dispatch, FC, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import EmailTemplateService from "../../api/services/emailTemplate.service";
+import "./emailTemplateCreate.css"
 
 interface EmailTemplateCreateProps {
   setModalActive: Dispatch<React.SetStateAction<boolean>> | null
@@ -23,9 +24,12 @@ const EmailTemplateCreateForm: FC<EmailTemplateCreateProps> =
     }
   
   return (
-    <form>
-      <h1>Создать шаблон рассылки</h1>
-      <input
+    <form id = "template_creation_form">
+      <h1 id = "make_template">Создать шаблон рассылки</h1>
+      <div>
+
+      <div id = "make_form">
+      <input id = "template_name"
         value={title}
         onChange={event => setTitle(event.target.value)}
         placeholder={'Введите тему письма'}
@@ -56,7 +60,9 @@ const EmailTemplateCreateForm: FC<EmailTemplateCreateProps> =
         cols={30}
         rows={10}
       />
-      <button
+      </div>
+      </div>
+      <button id = "create_Tbutton"
         onClick={() => {
           EmailTemplateService.makeEmailTemplate(title, header, body, footer)
             .then(() => {

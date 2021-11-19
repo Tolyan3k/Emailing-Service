@@ -4,6 +4,9 @@ import EmailService from "../../../api/services/email.service";
 import Modal from "../../../components/modal/Modal";
 import ContactForm from "../../../components/contacts/contact.form";
 import {observer} from "mobx-react-lite";
+ import './Contacts.css';
+
+
 
 const ContactsPage: FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
@@ -32,26 +35,25 @@ const ContactsPage: FC = () => {
   }, [fetchEmails, modalVisible])
 
   return (
-    <div>
+    <div id = "div_conteact" >
+
+      
       {isLoading
         ? "Загрузка..."
-        : <table
-              style={{
-                maxWidth: "500px",
-                minWidth: "500px",
-                margin: "auto",
-                border: "2px solid black",
-                borderSpacing: "5px",
-              }}
-          >
-          <caption>
-            Список контактов
-          </caption>
+        :
+        <div id = "div_contact">
+            <h1 id = "nametag">Контакты</h1>
+
+          <div id = "div_con">
+
+          
+        <table id = "table_of_contacts">
+          
           <thead>
           <tr>
-            <th>Контакт</th>
+            <th id = "contact_name_table">Контакт</th>
             <th>
-              <button
+              <button id = "create_btn"
                 onClick={() => setModalVisible(true)}
               >
                 Добавить контакт
@@ -59,25 +61,30 @@ const ContactsPage: FC = () => {
             </th>
           </tr>
           </thead>
-          <tbody>
+          <tbody id = "" >
           {emails.map(email =>
-            <tr key={email.email}>
-              <td>{email.email}</td>
+            <tr  key={email.email}>
+              <td id="contact_name_table_list">{email.email}</td>
               {/*<td>{email.tags.join(', ')}</td>*/}
-              <td>
+              <td id = "delete_contact_button_table">
                 <button onClick={() => {
                   EmailService.deleteEmail(email.email)
                     .then(() => fetchEmails())
-                }}>X</button>
+                }}><i className="">X</i>
+                </button>
               </td>
             </tr>
           )}
           </tbody>
-        </table>}
+        </table>
+        </div>
+        </div>
+        }
 
       <Modal active={modalVisible} setActive={setModalVisible}>
         <ContactForm setModalActive={setModalVisible}/>
       </Modal>
+      
     </div>
 
   );

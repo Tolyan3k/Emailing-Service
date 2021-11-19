@@ -1,0 +1,54 @@
+
+#style_table_list_of_email {
+    position: relative;
+    left: 16%;
+    width: 919px;
+    height: 441px;
+    display:block;
+    font-style: normal;
+    font-size: 4vh;
+}
+
+
+
+#style_table_list_of_email th {
+  font-size: 24px;
+  min-width: 50px;
+}
+
+#style_table_list_of_email tbody {
+  position: relative;
+  left: 1%;
+}
+
+#style_table_list_of_email td {
+  font-size: 24px;
+  min-width: 250px;
+}
+
+
+/* #style_table_list_of_email button {
+  margin: 0px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+} */
+
+
+#email_list_name {
+  font-size: 24px;
+  min-width: 50px;
+}
+
+/* #about_emailLists_button {
+  min-width: 155px;
+} */
+
+
+#create_btn {
+  position: relative;
+  left: -12%;
+}

@@ -5,6 +5,7 @@ import Modal from "../modal/Modal";
 import EmailListForm from "./emailList.form";
 import EmailListCreateForm from "./emailList.create.form";
 import {observer} from "mobx-react-lite";
+// import './emailLists.form.css';
 
 const EmailListsForm: FC = () => {
   const [emailLists, setEmailLists] = useState<IEmailList[]>([])

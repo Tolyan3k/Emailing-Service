@@ -8,6 +8,7 @@ import EmailListService from "../../../api/services/emailList.service";
 import EmailTemplateService from "../../../api/services/emailTemplate.service";
 import Modal from "../../../components/modal/Modal";
 import EmailingEditForm from "../../../components/emailings/emailing.edit.form";
+// import './Emailing.css';
 
 interface EmailingsIdProps {
   id: string
@@ -73,11 +74,7 @@ const EmailingsIdPage = () => {
 
   const mainScreen = (
     <div>
-      <table
-        style={{
-          // alignItems: "left",
-          justifyContent: "left"
-        }}
+      <table className = "style_table"
       >
         <tbody>
         <tr>
@@ -121,14 +118,7 @@ const EmailingsIdPage = () => {
         </tr>
         </tbody>
       </table>
-      <table
-          style={{
-            width: "1000 px",
-            maxWidth: "1000px",
-            minWidth: "1000px",
-            margin: "auto",
-            border: "2px solid black",
-          }}
+      <table className = "style_table"
       >
         <caption>
           Статусы доставки
@@ -153,7 +143,7 @@ const EmailingsIdPage = () => {
 
       <Modal active={showEmailListModal} setActive={setShowEmailListModal}>
         <div>
-          <table>
+          <table className = "style_table">
             <caption>Список рассылки</caption>
             <tbody>
             <tr>

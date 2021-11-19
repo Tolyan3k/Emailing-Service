@@ -14,6 +14,7 @@ const Modal: FC<ModalProps> =
   }) => {
   return (
     <div
+
       className={active ? "modal active" : "modal"}
       onClick={() => setActive(false)}
     >
@@ -21,13 +22,17 @@ const Modal: FC<ModalProps> =
         className={active ? "modal__content active" : "modal__content"}
         onClick={e => e.stopPropagation()}
       >
+
+
         <button
-          className={"modal__btn"}
+        className = "btn"
           onClick={() => setActive(false)}
         >
-          X
+          закрыть
         </button>
         {children}
+      
+      
       </div>
     </div>
   );
