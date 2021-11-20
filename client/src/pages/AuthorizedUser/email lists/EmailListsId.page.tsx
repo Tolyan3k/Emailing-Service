@@ -4,7 +4,7 @@ import {IEmailList} from "../../../api/models/IEmailList";
 import EmailListService from "../../../api/services/emailList.service";
 import Modal from "../../../components/modal/Modal";
 import EmailListEdit from "../../../components/email list/emailList.edit";
-//import './EmailList.page.css';
+import "../unified.css"
 
 
 interface EmailListsIdProps {
@@ -37,10 +37,10 @@ const EmailListsIdPage: FC = () => {
   )
 
   const emailListScreen = (
-    <div>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-
-      <table className = "style_table"
+    <div className = "display">
+          <h1 id = "center">Список контактов   "{emailList.name}"</h1>
+        <div className = "display_2">
+      <table
       >
         <tbody>
         <tr>
@@ -49,8 +49,7 @@ const EmailListsIdPage: FC = () => {
         </tr>
         </tbody>
       </table>
-      <table className = "style_table"
-      >
+      <table>
         <caption>
           Список контактов
         </caption>
@@ -75,6 +74,7 @@ const EmailListsIdPage: FC = () => {
         </tbody>
       </table>
 
+      </div>
       <Modal active={editEmailListVisible} setActive={setEditEmailListVisible}>
         <EmailListEdit emailListId={id} modalActive={editEmailListVisible} setModalActive={setEditEmailListVisible}/>
       </Modal>

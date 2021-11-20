@@ -1,5 +1,5 @@
 .logout {
-    margin: 22px;
+    /* margin: 22px; */
     font-family: Roboto;
     font-style: normal;
     font-weight: 200;
@@ -10,8 +10,8 @@
     
     color: #000000;
 
-    position: relative;
-    left: 72%;
+    position: absolute;
+    left: 65%;
     top: 35%; 
 
 }

@@ -6,6 +6,8 @@ import {IEmailList} from "../../../api/models/IEmailList";
 import EmailListService from "../../../api/services/emailList.service";
 import {useHistory} from "react-router-dom";
 import './EmailList.page.css';
+import "../unified.css"
+
 
 const EmailListsPage = () => {
   const history = useHistory()
@@ -26,13 +28,12 @@ const EmailListsPage = () => {
 
   return (
     <div>
-      {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link> */}
       
       
-      <div id = "div_contact">
-            <h1 id = "nametag">Списки рассылки</h1>
+      <div className = "display">
+            <h1 id = "center">Списки рассылки</h1>
 
-            <div id = "div_con"> 
+            <div className = "display_2"> 
             
       <table id = "style_table_list_of_email"
      

@@ -1,0 +1,34 @@
+.display {
+    
+    position: absolute;
+    width: 1210px;
+    height: 556px;
+    left: 12%;
+    top: 25%;
+
+    background: #8DA0C4;
+    
+    color: white;
+
+}
+
+
+.display_2 {
+    position: absolute;
+    width: 100%;
+    height: 91%;
+    left: 0px;
+    top: 70px;
+
+    background: #6C7B97;
+}
+
+#center {
+    position: relative;
+    text-align: center;
+    font-weight: 300;
+    font-size: 33px;
+    color: #fff;
+    top: -0.7%;
+}
+

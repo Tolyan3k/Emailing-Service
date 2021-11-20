@@ -1,31 +1,12 @@
-#font {
+.font {
     position: relative;
     color: black;
-    min-width: 50vw;
-    min-height: 40vh;
+    min-width: 100vw;
+    min-height: 100vh;
     top: -15px;
 }
 
-#table_list {
-    position: relative;
-    margin: 4%;
-    left: 2%;
-    width: 760px;
-    color:black;
-    /* background-color: blue; */
-}
-
-
-#td_create_list {
-    color:black;
-    font-size: 2.0vh;
-    min-width: 280px;
-    max-width: 550px;
-    
-}
-
-
-#creation_list {
+.font h1 {
     position: relative;
     left: 1%;
     top: 1vh;
@@ -35,8 +16,7 @@
 }
 
 
-
-#list_name {
+.font input {
     font-size: 2.5vh;
     min-width: 450px;
     min-height: 35px;
@@ -55,49 +35,80 @@
 }
 
 
-#add_button {
+.table_list {
     position: relative;
-    left: 74%;
+    margin: 4%;
+    left: 2%;
+    
+    
+    color:black;
+    /* background-color: blue; */
+}
+
+
+.table_list tr {
+    
+    position: relative;
+    text-align: left;
+    /* min-width: 45vw; */
+    
+    margin-right: 25px;
+    font-size: 2.5vh;
+    
+   
+}
+
+.table_list td {
+    color:black;
+    font-size: 2.0vh;
+    min-width: 280px;
+    max-width: 550px;
+}
+
+.table_list td button {
+    position: relative;
+    /* left: 74%; */
     margin-left: 25px;
     font-size: 1.68vh;
 
     background-color: white;
     min-height: 25px;
     min-width: 50px;
-    z-index: 2;
+    /* z-index: 2; */
     border: inset 0 -0.5vh rgba(black, 0.1);
-    padding: 11px;
+    /* padding: 11 px; */
     text-align: center;
 }
 
 
 
-
-
-#create_button {
-    position: relative;
-    margin-left: 25px;
-    font-size: 2.5vh;
-
-    background-color: white;
-    min-height: 55px;
-    min-width: 150px;
-    z-index: 2;
-    border: inset 0 -0.5vh rgba(black, 0.1);
-    padding: 12px;
-    text-align: center;
-
-    margin-bottom: 25px;
-    left: 40%;
-}
-
-
-#mail_adress {
+.table_list tr {
     position: relative;
     text-align: left;
-    min-width: 45vw;
+    /* min-width: 45vw; */
 
     margin-right: 25px;
     font-size: 2.5vh;
-
 }
+
+
+
+
+.font button {
+    position: relative;
+    /* margin-left: 0px; */
+    font-size: 2.5vh;
+
+    background-color: white;
+    /* min-height: 55px; */
+    /* min-width: 150px; */
+    /* z-index: 2; */
+    border: inset 0 -0.5vh rgba(black, 0.1);
+    /* padding: 12px; */
+    text-align: center;
+
+    /* margin-bottom: 0px; */
+    /* left: 40%; */
+}
+
+

@@ -30,9 +30,9 @@ const EmailListCreateForm: FC<EmailListCreateFormProps> =
   }, [fetchEmails, modalActive])
 
   return (
-    <div id = "font">
+    <div className = "font">
       
-      <h1 id = "creation_list">Создание нового списка рассылки</h1>
+      <h1>Создание нового списка рассылки</h1>
 
       <input  id = "list_name"
         value={name}
@@ -41,14 +41,13 @@ const EmailListCreateForm: FC<EmailListCreateFormProps> =
         type="text"
       />
       
-      <table id = "table_list">
-        {/* <caption>Выберите e-mail для рассылки</caption> */}
+      <table className = "table_list">
         <tbody>
           {emails.map(email =>
-            <tr id = "mail_adress" key={email}>
-              <td id = "td_create_list" >{email}</td>
+            <tr key={email}>
+              <td>{email}</td>
               <td>
-                <button id = "add_button"
+                <button
                   onClick={() => {
                     emailListEmails.includes(email)
                       ? setEmailListEmails(emailListEmails.filter(e => e !== email))
@@ -69,7 +68,7 @@ const EmailListCreateForm: FC<EmailListCreateFormProps> =
           )}
         </tbody>
       </table>
-      <button id = "create_button"
+      <button
         onClick={() => {
           EmailListService.makeEmailList(name, emailListEmails)
             .then(() => {

@@ -8,7 +8,7 @@ import EmailListService from "../../../api/services/emailList.service";
 import EmailTemplateService from "../../../api/services/emailTemplate.service";
 import Modal from "../../../components/modal/Modal";
 import EmailingEditForm from "../../../components/emailings/emailing.edit.form";
-// import './Emailing.css';
+import '../unified.css';
 
 interface EmailingsIdProps {
   id: string
@@ -67,20 +67,21 @@ const EmailingsIdPage = () => {
   }, [emailing, emailList, emailTemplate])
 
   const loadingScreen = (
-    <div>
-      Загрузка...
+    <div className = "dispaly">
+      <div className = "display_2">
+         Загрузка...
+
+      </div>
     </div>
   )
 
   const mainScreen = (
-    <div>
-      <table className = "style_table"
-      >
+    <div className = "display">
+        <h1>Название рассылки: {emailing.name}</h1>
+      <div className = "display_2">
+      <table className = "">
         <tbody>
-        <tr>
-          <th>Название:</th>
-          <td>{emailing.name}</td>
-        </tr>
+        
         <tr>
           <th>Список рассылки:</th>
           <td>
@@ -140,6 +141,7 @@ const EmailingsIdPage = () => {
         )}
         </tbody>
       </table>
+      </div>
 
       <Modal active={showEmailListModal} setActive={setShowEmailListModal}>
         <div>

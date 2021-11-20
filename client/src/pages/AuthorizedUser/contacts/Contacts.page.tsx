@@ -5,7 +5,8 @@ import Modal from "../../../components/modal/Modal";
 import ContactForm from "../../../components/contacts/contact.form";
 import {observer} from "mobx-react-lite";
  import './Contacts.css';
-
+//  import '../AuthorizedUser/unified.css';
+import "../unified.css"
 
 
 const ContactsPage: FC = () => {
@@ -35,16 +36,18 @@ const ContactsPage: FC = () => {
   }, [fetchEmails, modalVisible])
 
   return (
-    <div id = "div_conteact" >
+    <div className = "display" >
 
       
       {isLoading
         ? "Загрузка..."
         :
-        <div id = "div_contact">
+        <div >
             <h1 id = "nametag">Контакты</h1>
 
-          <div id = "div_con">
+          <div className = "display_2">
+
+            
 
           
         <table id = "table_of_contacts">

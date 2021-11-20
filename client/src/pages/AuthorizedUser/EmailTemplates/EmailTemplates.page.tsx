@@ -5,7 +5,8 @@ import {useHistory} from "react-router-dom";
 import Modal from "../../../components/modal/Modal";
 import EmailTemplateCreateForm from "../../../components/email template/emailTemplate.create.form";
 import {observer} from "mobx-react-lite";
- import './Templates.css';
+import './Templates.css';
+import "../unified.css"
 
 const EmailTemplatesPage = () => {
   const history = useHistory()
@@ -35,11 +36,10 @@ const EmailTemplatesPage = () => {
   const mainScreen = (
     <div>
 
-            <div id = "div_contact">
-            <h1 id = "nametag">Шаблоны писем</h1>
+            <div className = "display">
+            <h1 id = "center">Шаблоны писем</h1>
 
-            <div id = "div_con"> 
-            {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link> */}
+            <div className = "display_2"> 
 
       <table id = "style_table_template_of_email"
       >
